@@ -11,8 +11,7 @@ class User < ActiveRecord::Base
 	
 	has_secure_password
 	
-	# no longer need to validate presence of password & password_confirmation?
-	validates :password, presence: true, length: { minimum: 6 }
+	validates :password, length: { minimum: 6 }
 	validates :password_confirmation, presence: true
 end
 

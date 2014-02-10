@@ -127,10 +127,12 @@ describe User do
 		end
 
 		it "should destroy associated microposts" do
-			microposts = @user.microposts
+			microposts = @user.microposts.to_a
 			@user.destroy
+			expect(microposts).not_to be_empty
 			microposts.each do |micropost|
-				Micropost.find_by_id(micropost.id).should be_nil
+				expect(Micropost.where(id: micropost.id)).to be_empty
+				# Micropost.find_by_id(micropost.id).should be_nil
 			end
 		end
 
